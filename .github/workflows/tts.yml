@@ -1,28 +1,14 @@
-name: Test Mac Runner
+name: Mac TTS Runner
 
 on:
   workflow_dispatch:
 
 jobs:
-  test:
+  run:
     runs-on: macos-latest
 
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Check Mac environment
-        run: |
-          echo "MacOS runner is working"
-          sw_vers
-
-      - name: Create output
-        run: |
-          mkdir output
-          echo "Workflow is working" > output/result.txt
-
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: test-output
-          path: output/
+      - name: Run script
+        run: python3 run.py
